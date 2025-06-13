@@ -8,8 +8,14 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
+import sys
+from pathlib import Path
 
 from django.core.wsgi import get_wsgi_application
+
+# Add the project directory to the sys.path
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(BASE_DIR))
 
 # Use production settings when RENDER environment variable is present
 if 'RENDER' in os.environ:
