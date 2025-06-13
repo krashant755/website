@@ -7,7 +7,10 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 echo "Creating staticfiles directory if it doesn't exist..."
-mkdir -p staticfiles
+mkdir -p staticfiles/css
+
+echo "Explicitly copying CSS files..."
+cp -r static/css/* staticfiles/css/
 
 echo "Collecting static files..."
 python manage.py collectstatic --no-input

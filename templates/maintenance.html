@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Maintenance - ShopEase</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #4F46E5;
+            margin-top: 50px;
+        }
+        .container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        .icon {
+            font-size: 60px;
+            color: #4F46E5;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4F46E5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #4338ca;
+        }
+        .debug-info {
+            margin-top: 40px;
+            text-align: left;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🛠️</div>
+        <h1>Site Maintenance</h1>
+        <p>We're currently working on improving our website. Please check back soon!</p>
+        <p>Our team is working to resolve the issue as quickly as possible.</p>
+        
+        <a href="/" class="btn">Try Again</a>
+        
+        <div class="debug-info">
+            <h3>Debug Information:</h3>
+            <p>Static files path: {{ STATIC_ROOT }}</p>
+            <p>Static URL: {{ STATIC_URL }}</p>
+            <p>Debug mode: {{ DEBUG }}</p>
+            <p>Time: {{ now }}</p>
+        </div>
+    </div>
+</body>
+</html> 

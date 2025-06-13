@@ -48,4 +48,11 @@ ENV/
 .DS_Store
 
 # Static files collected
-staticfiles/ 
+# Keeping staticfiles directory for deployment
+# staticfiles/
+# But ignore everything in it except .gitkeep files
+staticfiles/*
+!staticfiles/.gitkeep
+!staticfiles/css/
+staticfiles/css/*
+!staticfiles/css/.gitkeep 
