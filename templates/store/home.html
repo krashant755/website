@@ -4,112 +4,219 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="py-5 text-center bg-light rounded">
-    <div class="container">
-        <h1 class="display-4">Welcome to ShopEase</h1>
-        <p class="lead">Your One-Stop Shopping Destination</p>
-        <p class="mb-4">Discover amazing products at unbeatable prices. Shop with ease on our secure platform.</p>
-        <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">Shop Now</a>
-    </div>
-</section>
-
-<!-- Featured Categories -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="mb-4">Featured Categories</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for category in categories %}
-            <div class="col">
-                <div class="card h-100 product-card">
-                    {% if category.image %}
-                    <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}">
-                    {% else %}
-                    <div class="bg-light text-center py-5">
-                        <i class="fa fa-folder-open fa-4x"></i>
-                    </div>
-                    {% endif %}
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ category.name }}</h5>
-                        <a href="{% url 'category_detail' category.slug %}" class="btn btn-outline-primary mt-2">Browse Products</a>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p>No categories available yet.</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="mb-4">Featured Products</h2>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            {% for product in products %}
-            <div class="col">
-                <div class="card h-100 product-card">
-                    {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                    {% else %}
-                    <div class="bg-light text-center py-5">
-                        <i class="fa fa-image fa-4x"></i>
-                    </div>
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text text-muted">{{ product.category.name }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="h5">${{ product.price }}</span>
-                            <a href="{% url 'product_detail' product.slug %}" class="btn btn-sm btn-outline-secondary">View Details</a>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-transparent">
-                        <div class="d-grid gap-2">
-                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p>No products available yet.</p>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="text-center mt-4">
-            <a href="{% url 'product_list' %}" class="btn btn-outline-primary">View All Products</a>
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="py-5">
-    <div class="container">
+<section class="hero-section mb-5" data-aos="fade-up">
+    <div class="container py-5">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2>About ShopEase</h2>
-                <p>ShopEase is your one-stop online shopping destination offering a wide selection of quality products across various categories.</p>
-                <p>Our mission is to provide customers with an easy, secure, and enjoyable shopping experience with excellent customer service and competitive prices.</p>
-                <div class="d-flex gap-3 mt-4">
+            <div class="col-lg-6 hero-content">
+                <h1 class="display-4 fw-bold mb-3">Discover, Shop, Enjoy</h1>
+                <p class="lead mb-4">Find premium products with fast delivery and secure checkout.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                    </a>
+                    <a href="#featured" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-star me-2"></i>Featured
+                    </a>
+                </div>
+                <div class="mt-4 d-flex gap-4">
                     <div>
-                        <i class="fa fa-truck fa-2x text-primary"></i>
-                        <h5 class="mt-2">Fast Delivery</h5>
+                        <i class="fas fa-truck fa-2x mb-2"></i>
+                        <p class="mb-0 fw-medium">Fast Delivery</p>
                     </div>
                     <div>
-                        <i class="fa fa-shield-alt fa-2x text-primary"></i>
-                        <h5 class="mt-2">Secure Payment</h5>
+                        <i class="fas fa-shield-alt fa-2x mb-2"></i>
+                        <p class="mb-0 fw-medium">Secure Payment</p>
                     </div>
                     <div>
-                        <i class="fa fa-undo fa-2x text-primary"></i>
-                        <h5 class="mt-2">Easy Returns</h5>
+                        <i class="fas fa-undo fa-2x mb-2"></i>
+                        <p class="mb-0 fw-medium">Easy Returns</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-center">
-                <img src="https://placehold.co/600x400" alt="About ShopEase" class="img-fluid rounded">
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" alt="Shopping" class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="mb-5" data-aos="fade-up">
+    <div class="d-flex align-items-center mb-4">
+        <h2 class="mb-0">Browse Categories</h2>
+        <a href="{% url 'product_list' %}" class="ms-auto text-decoration-none">View All <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for category in categories %}
+        <div class="col" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+            <div class="category-card">
+                {% if category.image %}
+                <img src="{{ category.image.url }}" class="category-image" alt="{{ category.name }}">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" class="category-image" alt="{{ category.name }}">
+                {% endif %}
+                <div class="category-overlay">
+                    <h3 class="category-title">{{ category.name }}</h3>
+                    <a href="{% url 'category_detail' category.slug %}" class="btn btn-light btn-sm">Browse Products</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No categories available yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="mb-5" id="featured" data-aos="fade-up">
+    <div class="d-flex align-items-center mb-4">
+        <h2 class="mb-0">Featured Products</h2>
+        <a href="{% url 'product_list' %}" class="ms-auto text-decoration-none">View All <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        {% for product in products %}
+        <div class="col" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+            <div class="card h-100 product-card">
+                <div class="position-absolute top-0 end-0 m-2">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'add_to_wishlist' product.id %}?next=home" class="btn btn-sm btn-light rounded-circle p-2 shadow-sm">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                {% else %}
+                <div class="bg-light text-center py-5">
+                    <i class="fa fa-image fa-4x text-muted"></i>
+                </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.category.name }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="product-price">${{ product.price }}</span>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'product_detail' product.slug %}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No products available yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Promo Banners -->
+<section class="mb-5" data-aos="fade-up">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3>Summer Collection</h3>
+                            <p class="mb-4">Up to 50% off on selected items</p>
+                            <a href="{% url 'product_list' %}" class="btn btn-light">Shop Now</a>
+                        </div>
+                        <div class="col-4 text-end">
+                            <i class="fas fa-sun fa-5x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card bg-secondary text-white h-100">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3>New Arrivals</h3>
+                            <p class="mb-4">Check out our latest products</p>
+                            <a href="{% url 'product_list' %}" class="btn btn-light">Explore</a>
+                        </div>
+                        <div class="col-4 text-end">
+                            <i class="fas fa-bolt fa-5x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="mb-5" data-aos="fade-up">
+    <div class="row g-4">
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-light rounded-circle p-3 d-inline-flex mb-3">
+                    <i class="fas fa-truck fa-2x text-primary"></i>
+                </div>
+                <h5>Free Shipping</h5>
+                <p class="text-muted small">On orders over $50</p>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-light rounded-circle p-3 d-inline-flex mb-3">
+                    <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                </div>
+                <h5>Secure Payment</h5>
+                <p class="text-muted small">100% secure payment</p>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-light rounded-circle p-3 d-inline-flex mb-3">
+                    <i class="fas fa-headset fa-2x text-primary"></i>
+                </div>
+                <h5>24/7 Support</h5>
+                <p class="text-muted small">Dedicated customer service</p>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-light rounded-circle p-3 d-inline-flex mb-3">
+                    <i class="fas fa-undo fa-2x text-primary"></i>
+                </div>
+                <h5>Easy Returns</h5>
+                <p class="text-muted small">30-day return policy</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="card rounded-4 border-0 bg-light mb-5" data-aos="fade-up">
+    <div class="card-body p-md-5 p-4">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h3>Subscribe to our Newsletter</h3>
+                <p class="text-muted mb-lg-0">Get updates about new products and special offers.</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="d-flex">
+                    <input type="email" class="form-control me-2" placeholder="Your email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
             </div>
         </div>
     </div>
