@@ -3,8 +3,14 @@ from django.db.models import Q
 from .models import Product, Category
 
 def home(request):
-    products = Product.objects.filter(available=True)[:8]  # Get latest 8 products
-    categories = Category.objects.all()[:6]  # Get first 6 categories
+    try:
+        products = Product.objects.filter(available=True)[:8]  # Get latest 8 products
+        categories = Category.objects.all()[:6]  # Get first 6 categories
+    except Exception:
+        # Fallback in case of any errors
+        products = []
+        categories = []
+    
     context = {
         'products': products,
         'categories': categories,

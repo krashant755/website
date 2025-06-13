@@ -16,6 +16,16 @@ if DATABASE_URL:
         'default': dj_database_url.parse(DATABASE_URL)
     }
 
+# Make sure the context processors are correctly defined
+TEMPLATES[0]['OPTIONS']['context_processors'] = [
+    'django.template.context_processors.debug',
+    'django.template.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+    'cart.context_processors.cart_context',
+    'store.context_processors.categories_context',
+]
+
 # Enable HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True

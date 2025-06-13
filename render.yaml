@@ -16,7 +16,7 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: PYTHON_VERSION
-        value: 3.9.18
+        value: 3.13.0
       - key: RENDER
         value: "true"
       - key: DJANGO_SETTINGS_MODULE
