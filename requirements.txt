@@ -1,6 +1,6 @@
-Django>=4.2,<6.0
-Pillow
-django-crispy-forms>=2.0
+Django>=3.2,<5.0
+Pillow>=8.0.0
+django-crispy-forms>=1.14.0
 crispy-bootstrap5
 python-dotenv
 gunicorn

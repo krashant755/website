@@ -3,7 +3,7 @@ services:
     name: shopease
     env: python
     buildCommand: ./build.sh
-    startCommand: gunicorn ecommerce.wsgi:application
+    startCommand: gunicorn ecommerce.wsgi
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -16,7 +16,13 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: PYTHON_VERSION
-        value: 3.11.7
+        value: 3.9.18
+      - key: RENDER
+        value: "true"
+      - key: DJANGO_SETTINGS_MODULE
+        value: "ecommerce.production"
+      - key: WEB_CONCURRENCY
+        value: "4"
 
 databases:
   - name: shopease-db
